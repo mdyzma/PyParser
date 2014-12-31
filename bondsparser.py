@@ -27,7 +27,7 @@ def nonblank_lines(f):
             yield line
 
 #############################################
-Bonds
+#Bonds
 #############################################
 
 #Building matrix of bonds types and saving to z_bondtypes.tmp
@@ -56,7 +56,7 @@ with open('z_bondtypes.tmp','r') as bs, open ('bonds.par', 'w') as output:
 
 
 #############################################
-Angles
+#Angles
 #############################################
 
 #Building matrix of angles types and saving to z_angletypes.tmp
