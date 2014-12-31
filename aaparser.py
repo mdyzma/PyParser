@@ -25,7 +25,7 @@ def print_full(x):
     pd.reset_option('display.max_rows')
 
 def Rmin(column):
-    return math.pow(2,1/6)*column['Sigma']/2*10
+    return (math.pow(2.0,1.0/6)*column['Sigma']/2)*10
 
 
 ########################################################
