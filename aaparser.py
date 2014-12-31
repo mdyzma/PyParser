@@ -3,10 +3,12 @@
 # in order to create single matrix containing aa residues atoms list with atom
 # mass, charge, epsilon, sigma and atom name in PDB format
 
-import sys,os, re, csv
+# import sys,os, re, csv
 import pandas as pd
+from pandas import *
 import numpy as np
-from collections import defaultdict
+from numpy import *
+# from collections import defaultdict
 
 residue_name=[]
 atom_data=[]
@@ -21,6 +23,9 @@ def print_full(x):
     pd.set_option('display.max_rows', len(x))
     print(x)
     pd.reset_option('display.max_rows')
+
+def Rmin(column):
+    return math.pow(2,1/6)*column['Sigma']/2*10
 
 
 ########################################################
@@ -94,9 +99,13 @@ with open('z_pdb_names.tmp','r') as pdb_names:
 
 with open ('atoms.par','w') as output:
     df4= pd.merge(df1,df2,on='AtType',how = 'left')
-    df4.to_csv(output,sep='\t')
+    df6= pd.DataFrame({'AtType': df4['AtType'],'Rmin': Rmin(df4)})
+
+    df7=merge(df4, df6, left_index=True, right_index=True, how='outer')
+
+    df7.to_csv(output,sep='\t')
 
 
     # df5=pd.merge(df4,df3,left_on='AtType',right_on='PDB',how='left',left_index=True)
     # print_full(df5)
-print df3
+# print df3
