@@ -3,7 +3,7 @@
 # in order to create single matrix containing aa residues atoms list with atom
 # mass, charge, epsilon, sigma and atom name in PDB format
 
-import sys,os,re,csv,fileinput
+import sys,os,re,csv,fileinput,glob
 import pandas as pd
 from pandas import *
 import numpy as np
@@ -73,12 +73,13 @@ with open('atomtypes.atp','r') as input_mass, open('.temp/z_mass.tmp','w') as zm
 
 with open('ffnonbonded.itp','r') as input_epsi, open('.temp/z_epsi.tmp','w') as epsi:
     for line in input_epsi:
-        if line.startswith(';'):
+        if line.startswith(';') or line.startswith('#') or line.startswith('['):
             continue
         if '.' in line:
             atom_epsi = line.split()
-            epsi_data = '{}\t{}\n'.format(atom_epsi[5],atom_epsi[6])
-            epsi.write(epsi_data)
+            if len(atom_epsi)>6:
+                epsi_data = '{}\t{}\n'.format(atom_epsi[5],atom_epsi[6])
+                epsi.write(epsi_data)
 
 # Reads atom PDB name from atom_nom_md.tbl
 with open('atom_nom_md.tbl','r') as pdb_names, open ('.temp/z_pdb_names.tmp','w')as output:
