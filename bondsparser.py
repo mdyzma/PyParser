@@ -3,10 +3,11 @@
 # in order to create single matrix containing aa residues atoms list with atom
 # mass, charge, epsilon, sigma and atom name in PDB format
 
-import sys,os, re, csv
+import sys,os,re,csv,fileinput,glob
 import pandas as pd
+from pandas import *
 import numpy as np
-from collections import defaultdict
+from numpy import *
 
 
 bonds= []
@@ -26,12 +27,22 @@ def nonblank_lines(f):
         if line:
             yield line
 
+# Creating temp dir if dont exist
+dirs= ['.temp', '.par']
+for d in dirs:
+    if not os.path.exists(d):
+        os.mkdir(d)
+
+
+# Topology name from command line
+name=sys.argv[1]
+
 #############################################
 #Bonds
 #############################################
 
 #Building matrix of bonds types and saving to z_bondtypes.tmp
-with open('ffbonded.itp','r') as bonds_input, open ('z_bondtypes.tmp','w') as output:
+with open('ffbonded.itp','r') as bonds_input, open ('.temp/z_bondtypes.tmp','w') as output:
     for line in bonds_input:
         if 'bondtypes' in line:
             break
@@ -49,7 +60,7 @@ with open('ffbonded.itp','r') as bonds_input, open ('z_bondtypes.tmp','w') as ou
         output.write(x)
 
 
-with open('z_bondtypes.tmp','r') as bs, open ('bonds.par', 'w') as output:
+with open('.temp/z_bondtypes.tmp','r') as bs, open ('.par/'+name+'_bonds.par', 'w') as output:
     df1=pd.read_csv(bs,header=None,index_col=None,sep='\t',names=['i','j','func','b0','Kb'])
     # print_full(df1)
     df1.to_csv(output,sep='\t')
@@ -60,7 +71,7 @@ with open('z_bondtypes.tmp','r') as bs, open ('bonds.par', 'w') as output:
 #############################################
 
 #Building matrix of angles types and saving to z_angletypes.tmp
-with open('ffbonded.itp','r') as angle_input, open ('z_angletypes.tmp','w') as output:
+with open('ffbonded.itp','r') as angle_input, open ('.temp/z_angletypes.tmp','w') as output:
     for line in angle_input:
         if 'angletypes' in line:
             break
@@ -78,7 +89,7 @@ with open('ffbonded.itp','r') as angle_input, open ('z_angletypes.tmp','w') as o
         output.write(x)
 
 
-with open('z_angletypes.tmp','r') as angs, open ('angles.par', 'w') as output:
+with open('.temp/z_angletypes.tmp','r') as angs, open ('.par/'+name+'_angles.par', 'w') as output:
     df2=pd.read_csv(angs,header=None,index_col=None,sep='\t',names=['i','j','k','func','th0','cth'])
     # print_full(df2)
     df2.to_csv(output,sep='\t')

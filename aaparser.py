@@ -28,7 +28,14 @@ def print_full(x):
 def Rmin(column):
     return (math.pow(2.0,1.0/6)*column['Sigma']/2)*10
 
-# Creating temp dir
+#Removes blank lines
+def nonblank_lines(f):
+    for l in f:
+        line = l.rstrip()
+        if line:
+            yield line
+
+# Creating temp dir if dont exist
 dirs= ['.temp', '.par']
 for d in dirs:
     if not os.path.exists(d):
