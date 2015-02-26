@@ -1,10 +1,12 @@
 #!/bin/bash
-for i in top/*
+for dir in top/*;
 	do
-		if [ -d $i ]
+		if [ -d $dir ]
 			then
-				echo $i
-				python aaparser.py $i && python bondsparser.py $i
-#&& python dihedralsparser.py "$subdir";
+				dir=${dir%*/}
+				echo ${dir##*/}
+#			python aaparser.py ${dir##*/} && python bondsparser.py ${dir##*/}
+			#&& python dihedralsparser.py $dir;
 		fi
 	done
+

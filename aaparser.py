@@ -35,7 +35,7 @@ def nonblank_lines(f):
         if line:
             yield line
 
-# Creating temp dir if dont exist
+# Creating temp dirs if dont exist
 dirs= ['.temp', '.par']
 for d in dirs:
     if not os.path.exists(d):
