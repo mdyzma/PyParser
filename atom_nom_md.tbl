@@ -56,6 +56,32 @@
 ; A.A.  XPLOR   MSI     GROMACS PDB
 ; ----  -----   ---     ------- ---
 ;
+URE		C		C 		C		C
+URE		O		O		O		O
+URE		N1		N		N1		N1
+URE		H11		H		H11		H11
+URE		H12		H		H12		H12
+URE		N2		N		N2		N2
+URE		H21		H		H21		H21
+URE		H22		H		H22		H22
+ACE		HH31	H		HH31	HH31
+ACE		CH3		C		CH3		CH3
+ACE		HH32	H		HH32	HH32
+ACE		HH33	H		HH33	HH33
+ACE		C		C		C 		C
+ACE		O		O		O 		O
+NME		N		N		N		N
+NME		H		H		H		H
+NME		CH3		CH3		CH3		CH3
+NME		HH31	HH31	HH31	HH31
+NME		HH32	HH32	HH32	HH32
+NME		HH33	HH33	HH33	HH33
+NHE		N		N		N		N
+NHE		H1		H1		H1		H1
+NHE		H2		H2		H2		H2
+NH2		N		N		N		N
+NH2		H1		H1		H1		H1
+NH2		H2		H2		H2		H2
 ALA     N       N       N       N
 ALA     H       HN      HN      HN
 ALA     HA      HA      HA      HA
@@ -988,7 +1014,6 @@ NGLH     OE2     OE2     OE2     OE2
 NGLH     HE2     HE2     HE2     HE2
 NGLH     C       C       C       C
 NGLH     O       O       O       O
-
 CALA     N       N       N       N
 CALA     H       HN      HN      HN
 CALA     HA      HA      HA      HA
