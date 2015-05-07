@@ -6,6 +6,7 @@ for dir in top/*;
 				dir=${dir%*/}
 				echo ${dir##*/}
 				# python aaparser.py ${dir##*/} && python bondsparser.py ${dir##*/} && python atomname2pdb.py ${dir##*/};
+				# python aaparser.py ${dir##*/} && python bondsparser.py ${dir##*/}&&python dihedralsparser.py ${dir##*/};
 				# && python dihedralsparser.py ${dir##*/}
 		fi
 	done

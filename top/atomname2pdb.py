@@ -12,7 +12,7 @@ def nonblank_lines(f):
 
 name = sys.argv[1]
 
-with open('.par/'+name+'.ff_atoms.par','r') as par_input, open('.par/'+name+'.ff_name2pdb.par','w') as output:
+with open('.par/'+name+'_atoms.par','r') as par_input, open('.par/'+name+'_name2pdb.par','w') as output:
     for line in par_input:
         if line.startswith(' '):
             continue
@@ -37,7 +37,7 @@ with open('.par/'+name+'.ff_atoms.par','r') as par_input, open('.par/'+name+'.ff
         	x='{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\n'.format(x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8],x[9])
         if len(x)==11:
         	x='{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\t{}\n'.format(x[0],x[1],x[2],x[3],x[4],x[5],x[6],x[7],x[8],x[9],x[10])
-        output.write(x)
+        	output.write(x)
 
 
 
